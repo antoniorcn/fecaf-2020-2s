@@ -1,0 +1,14 @@
+cd <Nome da pasta>				Trocar de pasta
+
+cd ..							Volta para a pasta anterior
+
+cd \							Volta para a pasta raiz
+cd /	(linux)
+
+
+dir								Lista os arquivos e pastas
+ls -la	(linux)
+
+cls 							Limpa a tela
+
+type <Nome do arquivo>			Mostra o conteudo deste arquivo
