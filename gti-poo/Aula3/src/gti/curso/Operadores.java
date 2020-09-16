@@ -5,7 +5,5 @@ public class Operadores {
 		int a = 4;
 		boolean b = a > 5;
 		System.out.println(b);
-
-
 	}
 }
