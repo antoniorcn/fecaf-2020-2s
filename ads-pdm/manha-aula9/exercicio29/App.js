@@ -3,29 +3,31 @@ import { Button, Text, View } from 'react-native';
 
 class LojaVirtual extends React.Component { 
 
-  state = {total: 0, 
-            produto1Qtd: 0, produto2Qtd: 0, produto3Qtd: 0,
-            produto1Titulo: "", produto2Titulo: "", produto3Titulo: "",
-            produto1Valor: 0, produto2Valor: 0, produto3Valor: 0,
+  state = { total: 0, 
+            produtos: [ {titulo: "", qtd: 0, valor: 0},
+                        {titulo: "", qtd: 0, valor: 0},
+                        {titulo: "", qtd: 0, valor: 0} ],
             cep: "00000-000"}
+
+  exibeProduto( indice ) { 
+    return (
+      <View>
+        <Text></Text>
+        <Text>Produto: {this.state.produtos[indice].titulo}</Text>
+        <Text>Quantidade: {this.state.produtos[indice].qtd}</Text>
+        <Text>Valor: {this.state.produtos[indice].valor}</Text>
+      </View>
+    )
+  }
 
   render() { 
     return(
       <View>
         <Text></Text>
         <Text>Loja Virtual</Text>
-        <Text></Text>
-        <Text>Produto: {this.state.produto1Titulo}</Text>
-        <Text>Quantidade: {this.state.produto1Qtd}</Text>
-        <Text>Valor: {this.state.produto1Valor}</Text>
-        <Text></Text>
-        <Text>Produto: {this.state.produto2Titulo}</Text>
-        <Text>Quantidade: {this.state.produto2Qtd}</Text>
-        <Text>Valor: {this.state.produto2Valor}</Text>
-        <Text></Text>
-        <Text>Produto: {this.state.produto3Titulo}</Text>
-        <Text>Quantidade: {this.state.produto3Qtd}</Text>
-        <Text>Valor: {this.state.produto3Valor}</Text>
+        {this.exibeProduto(0)}
+        {this.exibeProduto(1)}
+        {this.exibeProduto(2)}
         <Text></Text>
         <Text>CEP: {this.state.cep}</Text>
         <Button title="Visualizar" 
@@ -39,9 +41,9 @@ class LojaVirtual extends React.Component {
 
   calcular() { 
     const novoState = {...this.state};
-    var totalProd1 = novoState.produto1Qtd * novoState.produto1Valor;
-    var totalProd2 = novoState.produto2Qtd * novoState.produto2Valor;
-    var totalProd3 = novoState.produto3Qtd * novoState.produto3Valor;
+    var totalProd1 = novoState.produtos[0].qtd * novoState.produtos[0].valor;
+    var totalProd2 = novoState.produtos[1].qtd * novoState.produtos[1].valor;
+    var totalProd3 = novoState.produtos[2].qtd * novoState.produtos[2].valor;
     var frete = 14.0;
     novoState.total = totalProd1 + totalProd2 + totalProd3 + frete;
     this.setState(novoState);
@@ -49,17 +51,17 @@ class LojaVirtual extends React.Component {
 
   visualizar() { 
     const novoState = {...this.state};
-    novoState.produto1Titulo = "Arroz Camil";
-    novoState.produto1Qtd = 5;
-    novoState.produto1Valor = 17.0;
+    novoState.produtos[0].titulo = "Arroz Camil";
+    novoState.produtos[0].qtd = 5;
+    novoState.produtos[0].valor = 17.0;
 
-    novoState.produto2Titulo = "Feijão Carioca KiCaldo";
-    novoState.produto2Qtd = 3;
-    novoState.produto2Valor = 6.99;
+    novoState.produtos[1].titulo = "Feijão Carioca KiCaldo";
+    novoState.produtos[1].qtd = 3;
+    novoState.produtos[1].valor = 6.99;
 
-    novoState.produto3Titulo = "Maminha Congelada Friboi";
-    novoState.produto3Qtd = 2;
-    novoState.produto3Valor = 27.50;
+    novoState.produtos[2].titulo = "Maminha Congelada Friboi";
+    novoState.produtos[2].qtd = 2;
+    novoState.produtos[2].valor = 27.50;
 
     novoState.cep = "06764-045";
 
