@@ -7,8 +7,10 @@ public class Tamagochi {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		Dinossauro skeep = new Dinossauro();
+		Dinossauro rex = new Dinossauro();
 		skeep.comer();
 		skeep.comer();
+		rex.comer();
 		
 		boolean jogar = true;
 		while(jogar) {
