@@ -1,16 +1,29 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import ImgCheck from './assets/Check.png';
+import ImgCircle from './assets/Circle.png';
 
 class Tarefa extends React.Component {
+    constructor(props) { 
+        super(props);
+    }
+
     render() { 
+        let imgConcluido = ImgCircle;
+        let estiloTitulo = estilos.titulo;
+        if (this.props.concluido) { 
+            imgConcluido = ImgCheck;
+            estiloTitulo = estilos.tituloRiscado;
+        }
         return (
             <View style={estilos.tarefa}>
-                <Image  source={ImgCheck} 
+                <Image  source={imgConcluido} 
                         style={estilos.imageCheck}/>
                 <View style={estilos.textos}>
-                    <Text style={estilos.titulo}>Titulo</Text>
-                    <Text style={estilos.data}>Data</Text>
+                    <Text style={estiloTitulo}>
+                        {this.props.titulo}</Text>
+                    <Text style={estilos.data}>
+                        {this.props.data}</Text>
                 </View>
             </View>
         )
@@ -19,8 +32,12 @@ class Tarefa extends React.Component {
 
 const estilos = StyleSheet.create({
     titulo: {
-        color: "gray"
+        color: "gray",
     },
+    tituloRiscado: {
+        color: "gray",
+        textDecorationLine: "line-through"
+    },    
     data: {
         color: "gray"
     },
