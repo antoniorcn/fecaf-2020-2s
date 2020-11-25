@@ -1,9 +1,10 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Tarefa from './Tarefa';
 import imgTaskList from './assets/tasklist.png';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import NovaTarefa from './NovaTarefa';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,6 +16,14 @@ class App extends React.Component {
       {titulo: "Tarefa 3", data: "qua, 20 de novembro", concluido: true},
       {titulo: "Tarefa 4", data: "qua, 21 de novembro", concluido: false},
     ]
+  }
+
+  gravar(tarefa) { 
+    // console.log("Botão Gravar apertado");
+    // console.log("Tarefa: ", tarefa);
+    const novoEstado = {...this.state};
+    novoEstado.listaTarefas.push( tarefa );
+    this.setState(novoEstado);
   }
 
   trocarCheck(id) { 
@@ -38,18 +47,17 @@ class App extends React.Component {
     }
 
     return (
-      <View style={styles.container}>
-        {exibirTarefas}
-      </View>
+      <ScrollView>
+        <View style={styles.container}>
+          {exibirTarefas}
+        </View>
+      </ScrollView>
     );
   }
 
   Formulario = () => { 
     return (
-      <View>
-        <Text>Formulario</Text>
-        <Text>Aqui se coloca os dados de uma nova tarefa</Text>
-      </View>
+      <NovaTarefa onClick={(obj)=>{this.gravar(obj)}}/>
     );
   }
 
