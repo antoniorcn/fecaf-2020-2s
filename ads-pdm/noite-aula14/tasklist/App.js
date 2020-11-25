@@ -3,6 +3,7 @@ import React from 'react';
 import { Image, ImageBackground, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import Tarefa from './Tarefa';
 import tasklist from './resources/tasklist.png';
+import WebViewExample from './Modal.js'
 
 class App extends React.Component {
   state = { 
@@ -16,15 +17,18 @@ class App extends React.Component {
     ]
   }
 
+  toggleCheck( index ) { 
+    const novoStatus = {...this.state};
+    novoStatus.listaTarefas[index].check = !novoStatus.listaTarefas[index].check;
+    this.setState(novoStatus);
+  }
+
   render() {
     const tarefasExibir = [];
     for(let i = 0; i < this.state.listaTarefas.length; i++) {
       const tarefa = this.state.listaTarefas[i]; 
       tarefasExibir.push(
-        <Tarefa key={i}
-                titulo={tarefa.titulo}
-                data={tarefa.data}
-                check={tarefa.check}/>
+        <Tarefa key={i} tarefa={tarefa} id={i} onClick={(i) => {this.toggleCheck(i)}}/>
       );
     }
 
@@ -33,7 +37,9 @@ class App extends React.Component {
         <ImageBackground style={styles.image} source={tasklist}>
           <Text style={styles.titulo}>Hoje</Text>
           <Text style={styles.subtitulo}>Quarta 17 de Novembro</Text>
+          
         </ImageBackground>
+        {/* <WebViewExample/> */}
         <View style={styles.container}>
           {tarefasExibir}
         </View>

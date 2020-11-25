@@ -8,11 +8,11 @@ class Tarefa extends React.Component {
     constructor(props) { 
         super(props)
     }
+
     render() { 
         let img = Circle;
         let tituloEstilo = estilos.titulo;
-        let tarefa = this.props.tarefa;
-        if (tarefa.check) { 
+        if (this.props.check) { 
             img = Check;
             tituloEstilo = estilos.tituloCortado;
         }
@@ -20,13 +20,13 @@ class Tarefa extends React.Component {
         
         return (
         <View style={estilos.tarefa}>
-            <TouchableHighlight onPress={() => {this.props.onClick(this.props.id)}}>
+            <TouchableHighlight onPress={()=>this.props.onClick(this.props.id)}>
                 <Image style={estilos.check}
                 source={img}></Image>
             </TouchableHighlight>
             <View style={estilos.anotacoes}>
-                <Text style={tituloEstilo}>{tarefa.titulo}</Text>
-                <Text style={estilos.subtitulo}>{tarefa.data}</Text>
+                <Text style={tituloEstilo}>{this.props.titulo}</Text>
+                <Text style={estilos.subtitulo}>{this.props.data}</Text>
             </View>
         </View>
         );
